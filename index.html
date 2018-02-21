@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Parcial 1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/maps.css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="bootstrap/vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="bootstrap/css/freelancer.min.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCh1XAXyZ-lpm3pvC2lewhXXQyFJG5Bpzo"></script>
+    <script type="text/javascript" src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="public/js/facebook.js"></script>
+    <script src="public/js/menu.js"></script>
+    <script src="public/js/maps.js"></script>
+    <script src="public/js/shoppingcart.js"></script>
+    <script src="public/js/paypal.js"></script>
+    <script src="public/js/youtube.js"></script>
+    <script type="text/javascript" src="https://platform.linkedin.com/in.js">
+        api_key: 78tr2ywbx3gspp
+        onLoad: onLinkedInLoad
+        authorize: true
+    </script>
+    <script src="public/js/linkedin.js"></script>
+
+
+    <script src="bootstrap/vendor/jquery/jquery.min.js"></script>
+    <script src="bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="bootstrap/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="bootstrap/js/jqBootstrapValidation.js"></script>
+    <script src="bootstrap/js/contact_me.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="bootstrap/js/freelancer.min.js"></script>
+
+</head>
+
+<body onload="initialize()">
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">Futbol Picoso</a>
+            <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fa fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" onclick="showpage(0)" href="#">Nuestros productos</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" onclick="showpage(1);initMap();" href="#">Ubicación de la tienda</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" onclick="showpage(2);getVideos();" href="#">Videos Favoritos</a>
+                    </li>
+                    <li class="login">
+                        <fb:login-button data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false"
+                            data-use-continue-as="true" scope="public_profile,email" onlogin="checkLoginState();">
+                        </fb:login-button>
+                        <script type="in/Login"></script>
+                        <strong class="navbar-text" style="display: none" id="userName">
+                        </strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="masthead bg-danger text-white text-center">
+        <div class="container">
+            <img class="img-fluid mb-5 d-block mx-auto" src="bootstrap/img/profile.png" alt="">
+            <h1 class="text-uppercase mb-0">Futbol Picoso</h1>
+            <hr class="star-light">
+            <h2 class="font-weight-light mb-0">La página de futbol favorita de todos!</h2>
+        </div>
+    </header>
+    <section id="home">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <form class="form-inline">
+                        <div class="form-group col-sm-6 my-2">
+                            <img id="Imagen" src="" alt="..." class="img-thumbnail" style="width: 100%; height: 100%">
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group col-sm-12 my-2">
+                                <strong class="mr-2" for="id_productos">Productos:</strong>
+                                <select class="form-control" id="id_productos" onChange="getDataProductos()"></select>
+                            </div>
+                            <div class="form-group col-sm-12 my-2">
+                                <strong class="mr-2" for="Precio">Precio:</strong>
+                                <input placeholder="0.00" id="Precio" class="form-control" readonly>
+                            </div>
+                            <div class="form-group col-sm-12 my-2">
+                                <strong class="mr-2" for="Cantidad">Cantidad:</strong>
+                                <input class="form-control" size="1" id="Cantidad" value="1" onkeydown="if (event.keyCode == 13) document.getElementById('addShoppingCar').click()"
+                                />
+                            </div>
+                            <div class="form-group col-sm-12 my-2">
+                                <strong class="mr-2" for="Descuento">Descuento:</strong>
+                                <input class="form-control" size="1" id="Descuento" value="1" onkeydown="if (event.keyCode == 13) document.getElementById('addShoppingCar').click()"
+                                    readonly/>
+                            </div>
+                            <div class="form-group col-sm-12 my-2">
+                                <button class="btn btn-primary col-sm-12" id="addShoppingCar" onclick="addCar()">Agregar a Carrito</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <table id="tableProducts" class="table">
+                        <thead>
+                            <th>Cantidad</th>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Importe</th>
+                            <th>Descuento</th>
+                            <th>Añadir uno más</th>
+                            <th>Quitar un producto</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+
+                    <table border="0">
+                        <tr>
+                            <td>Precio total: $</td>
+                            <td>
+                                <div id="totalImporte" />
+                            </td>
+                            <td>Unidades:</td>
+                            <td>
+                                <div id="totalUnidades" />
+                            </td>
+                        </tr>
+                    </table>
+
+                    <div id="paypal-button">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="map_canvas" style="display: none;"></section>
+    <div id="youtube" style="display:none;"></div>
+</body>
+
+</html>
